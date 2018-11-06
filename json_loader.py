@@ -10,14 +10,14 @@ import numpy as np
 import json 
 from collections import namedtuple
 
-
+classes = ['bass', 'brass', 'flute', 'guitar', 'keyboard', 'mallet', 'organ', 'reed', 'string', 'synth_lead', 'vocal']
 
 #x = json.loads(data, object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
 
 class JSON_table():
     
     def __init__(self):
-        json_data=open(r'C:\Users\Ethan\Desktop\NSynth\examples.json').read()
+        json_data=open(r'.\data\examples.json').read()
         self.data = json.loads(json_data)
 
     def get_values(self, name):
@@ -41,6 +41,10 @@ class JSON_table():
         vec = np.zeros((1,10))
         vec[0,:] = i
         return vec
+    
+    def all_classes(self):
+        return classes
+        
     
     def get_info(self,name):
         json_ob = self.data[name]

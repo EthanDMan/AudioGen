@@ -2,6 +2,9 @@
 """
 Created on Thu Aug 23 15:01:54 2018
 
+Class for loading and formating wav files as input to network
+
+
 @author: Ethan
 """
 
@@ -19,12 +22,12 @@ class AudioLoader():
     
     def __init__(self):
         #self.filepath = "C:/Users/Ethan/Desktop/AudioGen/audio"
-        self.filepath = r"C:\Users\Ethan\Desktop\NSynth\audio2"
-        self._class_names = list(set([x.split('_')[0] for x in os.listdir("C:/Users/Ethan/Desktop/AudioGen/audio")]))
-        self._class_names.sort()
+        self.filepath = r".\data"
         self.directories = os.listdir(self.filepath)
         self.filenames = self.allFiles()
         self.table = JSON_table()
+        self._class_names = list(self.table.get_classes())
+        self._class_names.sort()
         self.test_file = self.filenames[400]
         shuffle(self.filenames)
         self.index = 0

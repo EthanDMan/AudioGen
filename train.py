@@ -1,8 +1,9 @@
-"""Training script for the WaveNet network on the VCTK corpus.
+"""
+Created on Thu Aug 23 15:53:34 2018
 
-This script trains a network with the WaveNet using data from the VCTK corpus,
-which can be freely downloaded at the following site (~10 GB):
-http://homepages.inf.ed.ac.uk/jyamagis/page3/page58/page58.html
+Tensorflow implementation of causal convolution gan
+
+@author: Ethan
 """
 
 from __future__ import print_function
@@ -17,7 +18,7 @@ import time
 import tensorflow as tf
 from tensorflow.python.client import timeline
 
-from CausalConv_muC import conv_vae
+from CausalConv import conv_vae
 
 BATCH_SIZE = 20
 CHECKPOINT_EVERY = 50
@@ -124,9 +125,6 @@ def main():
             print()
         finally:
             step += last_saved_step
-            #save(saver, sess, logdir, step)
-            #coord.request_stop()
-            #coord.join(threads)
             net.generate_rand(True)
             net.generate_select()
             if input('save?') == 'y':

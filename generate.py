@@ -16,7 +16,7 @@ import time
 import tensorflow as tf
 from tensorflow.python.client import timeline
 
-from CausalConv_muC import conv_vae
+from CausalConv import conv_vae
 
 def load(saver, sess, logdir):
     print("Trying to restore saved checkpoints from {} ...".format(logdir),
@@ -60,10 +60,6 @@ def main():
         saver = tf.train.Saver(var_list=variables_to_restore, max_to_keep=5)
         try:
             saved_global_step = load(saver, sess, logdir)
-            # if is_overwritten_training or saved_global_step is None:
-            #     # The first training step will be saved_global_step + 1,
-            #    # therefore we put -1 here for new or overwritten trainings.
-            #   saved_global_step = -1
         except:
            print("Something went wrong while restoring checkpoint. "
                       "We will terminate training to avoid accidentally overwriting "
